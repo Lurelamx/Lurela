@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lurela · Bolsas de tela hechas a mano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #3d4a35;
+      --verde-claro: #5a6b4f;
+      --crema: #f5f0e8;
+      --crema-oscuro: #ece4d4;
+      --texto: #2a2a2a;
+      --texto-suave: #6b6b6b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--crema);
+      color: var(--texto);
+      font-weight: 300;
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--verde);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--crema);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .tagline-header {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--crema-oscuro);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* HERO */
+    .hero {
+      background-color: var(--verde);
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--crema-oscuro);
+      opacity: 0.7;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 300;
+      color: var(--crema);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero p {
+      font-size: 0.85rem;
+      color: var(--crema-oscuro);
+      letter-spacing: 0.12em;
+      opacity: 0.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      border: 1px solid var(--crema);
+      color: var(--crema);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .hero-cta:hover {
+      background: var(--crema);
+      color: var(--verde);
+    }
+
+    /* COLECCIÓN LABEL */
+    .coleccion-label {
+      text-align: center;
+      padding: 3.5rem 1rem 1.5rem;
+    }
+
+    .coleccion-label span {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--verde);
+      opacity: 0.6;
+    }
+
+    .coleccion-label h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 300;
+      color: var(--verde);
+      margin-top: 0.4rem;
+    }
+
+    /* GRID */
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+      padding: 0 2px 2px;
+      max-width: 1200px;
+      margin: 0 auto 5rem;
+    }
+
+    .card {
+      background: white;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      background-color: var(--crema-oscuro);
+    }
+
+    /* Placeholder cuando no hay imagen */
+    .card-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background-color: var(--crema-oscuro);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-img-placeholder svg {
+      opacity: 0.2;
+      width: 48px;
+    }
+
+    .card-body {
+      padding: 1.4rem 1.4rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+    }
+
+    .card-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--verde);
+      letter-spacing: 0.03em;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--texto-suave);
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.2rem;
+    }
+
+    .card-precio {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--verde);
+    }
+
+    .card-precio span {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--texto-suave);
+      margin-left: 2px;
+    }
+
+    .btn-pedir {
+      display: inline-block;
+      background: var(--verde);
+      color: var(--crema);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1.3rem;
+      transition: background 0.25s;
+    }
+
+    .btn-pedir:hover {
+      background: var(--verde-claro);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--verde);
+      color: var(--crema-oscuro);
+      text-align: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--crema);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      opacity: 0.55;
+      text-transform: uppercase;
+    }
+
+    footer a {
+      color: var(--crema);
+      text-decoration: none;
+      opacity: 0.7;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      display: inline-block;
+      margin-top: 1rem;
+      border-bottom: 1px solid rgba(245,240,232,0.3);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover { opacity: 1; }
+
+    .card-detalles {
+      list-style: none;
+      margin-top: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .card-detalles li {
+      font-size: 0.72rem;
+      color: var(--texto-suave);
+      letter-spacing: 0.04em;
+      padding-left: 0.8rem;
+      position: relative;
+    }
+
+    .card-detalles li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--verde);
+      opacity: 0.4;
+      font-size: 0.65rem;
+    }
+      height: 40px;
+      width: auto;
+    }
+
+    .logo-placeholder {
+      width: 90px;
+      height: 44px;
+      border: 1px dashed rgba(245,240,232,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+    }
+
+    .logo-placeholder-texto {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--crema);
+      opacity: 0.4;
+      text-transform: uppercase;
+    }
+
+    .coleccion-historia {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--verde);
+      opacity: 0.75;
+      max-width: 520px;
+      margin: 1.2rem auto 0;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 0.3rem; text-align: center; }
+      .catalogo { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .card-body { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-wrap">
+      <!-- Sube tu logo como "logo.png" al repositorio y descomenta la línea de abajo -->
+      <!-- <img src="logo.png" alt="Lurela" class="logo-img"> -->
+      <div class="logo-placeholder">
+        <span class="logo-placeholder-texto">Tu logo aquí</span>
+      </div>
+    </div>
+    <span class="tagline-header">Bolsas de tela · hechas a mano</span>
+  </header>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Puebla, México</p>
+    <h1>Cada bolsa,<br><em>hecha para ti</em></h1>
+    <p>Tela · hilo · tiempo · intención</p>
+    <a href="#catalogo" class="hero-cta">Ver colección</a>
+  </section>
+
+  <div class="coleccion-label">
+    <span>Colección</span>
+    <h2>Silvestre</h2>
+    <p class="coleccion-historia">"En algún lugar profundo del bosque, después de la lluvia, el aire huele a calma. Silvestre nació de ese momento de querer llevarlo contigo a donde vayas."</p>
+  </div>
+
+  <div class="catalogo" id="catalogo">
+
+    <!-- SAVIA -->
+    <div class="card">
+      <!-- <img src="savia.jpg" alt="Bolsa Savia" class="card-img"> -->
+      <div class="card-img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3d4a35" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Savia</div>
+        <p class="card-desc">La bolsa del día a día, constante y ligera. Hecha en Puebla.</p>
+        <ul class="card-detalles">
+          <li>32 x 32 x 12 cm</li>
+          <li>Broche magnético</li>
+          <li>Forro interior de rayas</li>
+        </ul>
+        <div class="card-footer">
+          <div class="card-precio">$380 <span>MXN</span></div>
+          <a class="btn-pedir" href="https://www.instagram.com/lurela.mx/" target="_blank">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERBENA -->
+    <div class="card">
+      <!-- <img src="verbena.jpg" alt="Bolsa Verbena" class="card-img"> -->
+      <div class="card-img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3d4a35" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Verbena</div>
+        <p class="card-desc">Nació de las plantas que crecen solas, sin permiso, en los lugares más inesperados.</p>
+        <ul class="card-detalles">
+          <li>35 x 30 cm</li>
+          <li>Broche magnético</li>
+          <li>Forro interior</li>
+        </ul>
+        <div class="card-footer">
+          <div class="card-precio">$290 <span>MXN</span></div>
+          <a class="btn-pedir" href="https://www.instagram.com/lurela.mx/" target="_blank">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROBLE -->
+    <div class="card">
+      <!-- <img src="roble.jpg" alt="Bolsa Roble" class="card-img"> -->
+      <div class="card-img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3d4a35" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Roble</div>
+        <p class="card-desc">Firme como los árboles que duran siglos. Lleva contigo todo lo que importa. Hecha en Puebla.</p>
+        <ul class="card-detalles">
+          <li>32 x 32 x 12 cm</li>
+          <li>Broche magnético</li>
+          <li>Forro interior</li>
+        </ul>
+        <div class="card-footer">
+          <div class="card-precio">$390 <span>MXN</span></div>
+          <a class="btn-pedir" href="https://www.instagram.com/lurela.mx/" target="_blank">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAGNOLIA -->
+    <div class="card">
+      <!-- <img src="magnolia.jpg" alt="Bolsa Magnolia" class="card-img"> -->
+      <div class="card-img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#3d4a35" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-nombre">Magnolia</div>
+        <p class="card-desc">Una pieza que parece sacada de un jardín, pero hecha para tu día a día.</p>
+        <ul class="card-detalles">
+          <li>30 x 25 cm</li>
+          <li>Bolsa con pétalos acolchados</li>
+          <li>Correa ajustable</li>
+          <li>Cordón ajustable para cerrar</li>
+        </ul>
+        <div class="card-footer">
+          <div class="card-precio">$460 <span>MXN</span></div>
+          <a class="btn-pedir" href="https://www.instagram.com/lurela.mx/" target="_blank">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">Lurela</div>
+    <p>Bolsas de tela · hechas a mano</p>
+    <br>
+    <a href="https://www.instagram.com/lurela.mx/" target="_blank">@lurela.mx</a>
+  </footer>
+
+</body>
+</html>
